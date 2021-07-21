@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  connection: local
+  roles:
+    - role: prepare-servers
+
+- hosts: webservers
+  become: yes
+  roles:
+    - role: setup-servers
+    - role: deploy-servers

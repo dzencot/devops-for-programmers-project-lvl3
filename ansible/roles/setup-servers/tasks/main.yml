@@ -1,0 +1,15 @@
+---
+
+- name: Update cache and install packages
+  apt:
+    pkg:
+      - docker.io
+    update_cache: yes
+
+- name: Install pip
+  include_role:
+    name: geerlingguy.pip
+
+- name: Disable UFW
+  community.general.ufw:
+    state: disabled
