@@ -29,7 +29,7 @@ resource "aws_instance" "server" {
 }
 
 resource "aws_security_group" "security_group" {
-  name        = "security_group"
+  name = "security_group"
 
   ingress {
     description      = "ssh"
@@ -63,9 +63,9 @@ resource "aws_security_group" "security_group" {
 }
 
 resource "datadog_monitor" "foo" {
-  name               = "devops-project-lvl3 HTTP Alert! {{host.name}}"
-  type               = "service check"
-  message            = "Monitor triggered. Notify: @dzencot@gmail.com"
+  name    = "devops-project-lvl3 HTTP Alert! {{host.name}}"
+  type    = "service check"
+  message = "Monitor triggered. Notify: @dzencot@gmail.com"
 
   query = "\"http.can_connect\".over(\"instance:application_health_check_status\").by(\"host\",\"instance\",\"url\").last(2).count_by_status()"
 

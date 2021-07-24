@@ -4,12 +4,12 @@ variable "ssh_pub_key" {}
 
 
 variable "access_key" {
-  default = ""
+  default   = ""
   sensitive = true
 }
 
 variable "secret_key" {
-  default = ""
+  default   = ""
   sensitive = true
 }
 
