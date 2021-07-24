@@ -22,12 +22,3 @@ docker_password: !vault |
           6230333364396564343838306139386636663530326365366636
 
 datadog_site: "datadoghq.eu"
-
-datadog_checks:
-  http_check:
-    init_config:
-    instances:
-      - name: Application health check status
-        url: http://localhost:5000
-        timeout: 5
-        method: GET
