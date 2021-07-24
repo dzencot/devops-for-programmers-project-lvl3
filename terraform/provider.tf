@@ -1,4 +1,6 @@
 terraform {
+  backend "remote" {}
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -20,23 +22,3 @@ provider "datadog" {
   app_key = var.datadog_app_key
   api_url = "https://api.datadoghq.eu/"
 }
-
-variable "access_key" {
-  default = ""
-  sensitive = true
-}
-
-variable "secret_key" {
-  default = ""
-  sensitive = true
-}
-
-variable "pvt_key" {
-  default = "~/.ssh/id_rsa"
-}
-
-variable "datadog_api_key" {
-  default = ""
-}
-
-variable "datadog_app_key" {}

@@ -4,13 +4,6 @@
   community.general.terraform:
     project_path: "{{ terraform_path }}"
     state: present
-    variables:
-      # domain_name: "{{ domain_name }}"
-      access_key: "{{ aws_id }}"
-      secret_key: "{{ aws_key }}"
-      datadog_api_key: "{{ datadog_api_key }}"
-      datadog_app_key: "{{ datadog_app_key }}"
-      # ssh_pub_key: "{{ ssh_pub_key }}"
   register: terraform_result
 
 - name: Print terraform result

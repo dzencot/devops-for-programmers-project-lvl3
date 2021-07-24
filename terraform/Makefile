@@ -1,5 +1,5 @@
 init:
-	terraform init
+	terraform init -backend-config=backend.hcl
 
 plan:
 	terraform plan

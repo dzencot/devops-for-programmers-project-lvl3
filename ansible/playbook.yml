@@ -1,9 +1,9 @@
 ---
 
-- hosts: localhost
-  connection: local
-  roles:
-    - role: prepare-servers
+# - hosts: localhost
+#   connection: local
+#   roles:
+#     - role: prepare-servers
 
 - hosts: webservers
   become: yes
