@@ -14,11 +14,11 @@
 <a name="instruction"></a>
 ## Инструкция
 
-* Склонируйте проект. Все команды должны выпоняться в директории проекта.
+* Склонируйте проект. Все команды должны выполняться в директории проекта.
 
 * Замените ключи `datadog` и данные для доступа в докерхаб в `./ansible/group_vars/`. Используйте `ansible-vault encrypt_string` чтобы закодировать секретные данные. Сохраните файл с паролем в домашней директории `~/.ansible_pass.txt`.
 
-* Подготовьте `workspace` в [Terraform Cloud](https://app.terraform.io/). Заполните необходимые поля в `./terraform/backend.hcl`.
+* Подготовьте `workspace` в [Terraform Cloud](https://app.terraform.io/). Заполните необходимые поля в `./terraform/backend.tf`.
 
 * Добавьте файл `./terraform/.aws/creds` для доступа к AWS [Подробнее](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
 

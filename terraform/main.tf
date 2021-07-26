@@ -19,13 +19,63 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "server" {
+resource "aws_instance" "servers" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
+  count = var.number_of_instances
 
   key_name = aws_key_pair.deployer.key_name
 
   vpc_security_group_ids = [aws_security_group.security_group.id]
+}
+
+data "aws_vpc" "default" {
+  default = true
+}
+
+data "aws_subnet_ids" "all" {
+  vpc_id = data.aws_vpc.default.id
+}
+
+data "aws_security_group" "default" {
+  vpc_id = data.aws_vpc.default.id
+  name   = "default"
+}
+
+module "elb_http" {
+  source  = "terraform-aws-modules/elb/aws"
+  version = "~> 2.0"
+
+  name = "elb-devops3"
+
+  subnets         = data.aws_subnet_ids.all.ids
+  security_groups = [data.aws_security_group.default.id]
+  internal        = false
+
+  listener = [
+    {
+      instance_port     = "80"
+      instance_protocol = "http"
+      lb_port           = "80"
+      lb_protocol       = "http"
+    }
+  ]
+
+  health_check = {
+    target              = "HTTP:80/"
+    interval            = 30
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 5
+  }
+
+  tags = {
+    Name = "devops3"
+  }
+
+  # ELB attachments
+  number_of_instances = var.number_of_instances
+  instances           = aws_instance.servers.*.id
 }
 
 resource "aws_security_group" "security_group" {
