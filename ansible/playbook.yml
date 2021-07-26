@@ -1,11 +1,6 @@
 ---
 
-# - hosts: localhost
-#   connection: local
-#   roles:
-#     - role: prepare-servers
-
-- hosts: webservers
+- hosts: all
   become: yes
   roles:
     - role: setup-servers
