@@ -13,6 +13,9 @@ terraform-show:
 terraform-destroy:
 	make -C terraform destroy
 
+terraform-fmt:
+	make -C terraform fmt
+
 install:
 	make -C ansible install
 

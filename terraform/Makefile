@@ -6,3 +6,6 @@ plan:
 
 apply:
 	terraform apply
+
+fmt:
+	terraform fmt

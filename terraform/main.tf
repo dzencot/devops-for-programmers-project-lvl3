@@ -22,7 +22,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "servers" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  count = var.number_of_instances
+  count         = var.number_of_instances
 
   key_name = aws_key_pair.deployer.key_name
 
