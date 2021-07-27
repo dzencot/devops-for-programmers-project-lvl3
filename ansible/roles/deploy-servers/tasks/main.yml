@@ -1,14 +1,9 @@
 ---
 
-- name: Login into DockerHub
-  community.docker.docker_login:
-    username: "{{ docker_user }}"
-    password: "{{ docker_password }}"
-
 - name: Deploy app
   community.docker.docker_container:
     name: devops-example-app
-    image: dzencot/test
+    image: hexletcomponents/devops-example-app
     ports:
       - "80:5000"
     env:
@@ -17,7 +12,3 @@
 - name: Set monitoring
   include_role:
     name: datadog.datadog
-  # vars:
-  #   datadog_api_key: "{{ datadog_api_key }}"
-  #   datadog_app_key: "{{ datadog_app_key }}"
-  #   datadog_site: "datadoghq.eu"
